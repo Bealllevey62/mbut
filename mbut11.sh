@@ -98,7 +98,7 @@ class NodesController extends Controller
     {
         $user = auth()->user();
         if ($user->id !== 1) {
-            abort(403, "⚠️ 𝐀𝐊𝐒𝐄𝐒 𝐃𝐈𝐓𝐎𝐋𝐀𝐊 — 𝐇𝐚𝐧𝐲𝐚 𝐒𝐘𝐀𝐇𝐕𝟐𝐃 𝐘𝐚𝐧𝐠 𝐁𝐢𝐬𝐚 𝐄𝐝𝐢𝐭 𝐍𝐨𝐝𝐞!");
+            abort(403, "⚠️ AKSES DI TOLAK HANYA ADMIN ID 1 YANG BISA EDIT NODE");
         }
 
         $this->updateService->handle($node, $request->normalize(), $request->input('reset_secret') === 'on');
@@ -113,7 +113,7 @@ class NodesController extends Controller
     {
         $user = auth()->user();
         if ($user->id !== 1) {
-            abort(403, "❌ 𝐋𝐔 𝐒𝐄𝐇𝐀𝐓 𝐍𝐆𝐄𝐋𝐀𝐊𝐔𝐈𝐍 𝐇𝐀𝐏𝐔𝐒 𝐍𝐎𝐃𝐄? 𝐏𝐑𝐎𝐓𝐄𝐂𝐓 𝐁𝐘 𝐒𝐘𝐀𝐇𝐕𝟐𝐃⚠️");
+            abort(403, "❌ 𝐋𝐔 𝐒𝐄𝐇𝐀𝐓 𝐍𝐆𝐄𝐋𝐀𝐊𝐔𝐈𝐍 𝐇𝐀𝐏𝐔𝐒 𝐍𝐎𝐃𝐄?");
         }
 
         $this->deletionService->handle($node);
