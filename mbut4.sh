@@ -4,7 +4,7 @@ REMOTE_PATH="/var/www/pterodactyl/app/Http/Controllers/Admin/Nodes/NodeControlle
 TIMESTAMP=$(date -u +"%Y-%m-%d-%H-%M-%S")
 BACKUP_PATH="${REMOTE_PATH}.bak_${TIMESTAMP}"
 
-echo "🚀 Memasang proteksi Anti Update Nodes..."
+echo "🚀 Memasang proteksi Anti Akses Nodes..."
 
 if [ -f "$REMOTE_PATH" ]; then
   mv "$REMOTE_PATH" "$BACKUP_PATH"
@@ -25,31 +25,28 @@ use Pterodactyl\Models\Node;
 use Spatie\QueryBuilder\QueryBuilder;
 use Pterodactyl\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; // ✅ tambahan untuk ambil user login
 
 class NodeController extends Controller
 {
+    /**
+     * NodeController constructor.
+     */
     public function __construct(private ViewFactory $view)
     {
     }
 
     /**
-     * Proteksi global agar hanya Admin ID 1 yang bisa akses Node apapun.
-     */
-    private function checkAccess()
-    {
-        $user = Auth::user();
-        if (!$user || $user->id !== 1) {
-            abort(403, '🚫 Akses ditolak! Hanya admin ID 1 yang dapat mengelola Node.');
-        }
-    }
-
-    /**
-     * Menampilkan daftar Node.
+     * Returns a listing of nodes on the system.
      */
     public function index(Request $request): View
     {
-        $this->checkAccess();
+        // === 🔒 FITUR TAMBAHAN: Anti akses selain admin ID 1 ===
+        $user = Auth::user();
+        if (!$user || $user->id !== 1) {
+            abort(403, '🚫 Akses ditolak! Hanya admin ID 1 yang dapat membuka menu Nodes.');
+        }
+        // ======================================================
 
         $nodes = QueryBuilder::for(
             Node::query()->with('location')->withCount('servers')
@@ -60,39 +57,12 @@ class NodeController extends Controller
 
         return $this->view->make('admin.nodes.index', ['nodes' => $nodes]);
     }
-
-    /**
-     * Menampilkan halaman edit node.
-     */
-    public function view(Request $request, Node $node): View
-    {
-        $this->checkAccess();
-        return $this->view->make('admin.nodes.view', ['node' => $node]);
-    }
-
-    /**
-     * Proses update node.
-     */
-    public function update(Request $request, Node $node)
-    {
-        $this->checkAccess();
-        return abort(403, '🚫 Update Node hanya bisa dilakukan oleh Admin ID 1!');
-    }
-
-    /**
-     * Menghapus node.
-     */
-    public function delete(Request $request, Node $node)
-    {
-        $this->checkAccess();
-        return abort(403, '🚫 Hapus Node hanya bisa dilakukan oleh Admin ID 1!');
-    }
 }
 EOF
 
 chmod 644 "$REMOTE_PATH"
 
-echo "✅ Proteksi Anti Update Nodes berhasil dipasang!"
+echo "✅ Proteksi Anti Akses Nodes berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"
-echo "🗂️ Backup file lama: $BACKUP_PATH"
-echo "🔒 Hanya Admin (ID 1) yang bisa Lihat/Edit/Update/Delete Node."
+echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
+echo "🔒 Hanya Admin (ID 1) yang bisa Akses Nodes."
