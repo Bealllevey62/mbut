@@ -74,7 +74,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'BOCAH TOLOL NGINTIP NGINTIP ');
+            abort(403, 'KEBELET MALING DEK? TREDICT INVICTUS SYSTEM');
         }
 
         return $this->view->make('admin.locations.view', [
@@ -92,7 +92,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'BOCAH TOLOL NGINTIP NGINTIP ');
+            abort(403, 'UDAH BELI ADP MALAH KETEMU PANEL PROTEK WKWK ');
         }
 
         $location = $this->creationService->handle($request->normalize());
@@ -111,7 +111,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'BOCAH TOLOL NGINTIP NGINTIP ');
+            abort(403, 'KENAPA BANG MAU MALING? JADI DPR NOH MALING DUIT RAKYAT !');
         }
 
         if ($request->input('action') === 'delete') {
@@ -135,7 +135,7 @@ class LocationController extends Controller
         // 🔒 Cegah akses selain admin ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'BOCAH TOLOL NGINTIP NGINTIP ');
+            abort(403, 'HAI NGAPAIN LU WKWK');
         }
 
         try {
@@ -155,4 +155,4 @@ chmod 644 "$REMOTE_PATH"
 echo "✅ Proteksi Anti Akses Location berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
-echo "🔒 Hanya Admin (ID 1) yang bisa hapus server lain."
+echo "🔒 Hanya Owner Yang Bisa !."
