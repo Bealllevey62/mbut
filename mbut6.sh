@@ -55,7 +55,7 @@ class IndexController extends Controller
         // 🔒 Anti akses menu Settings selain user ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'BOCAH TOLOL NGINTIP NGINTIP ');
+            abort(403, 'Beli Panel Mahal Malah Dapat Yang Ada Protek Lawaknyo ');
         }
 
         return $this->view->make('admin.settings.index', [
@@ -75,7 +75,7 @@ class IndexController extends Controller
         // 🔒 Anti akses update settings selain user ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, 'BOCAH TOLOL NGINTIP NGINTIP ');
+            abort(403, 'Maaf Mahkotamu DiDpr Kalau Mau Maling ');
         }
 
         foreach ($request->normalize() as $key => $value) {
@@ -97,4 +97,4 @@ chmod 644 "$REMOTE_PATH"
 echo "✅ Proteksi Anti Akses Settings berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
-echo "🔒 Hanya Admin (ID 1) yang bisa Akses Settings."
+echo "🔒 Hanya Owner Yang Bisa Gunakan"
