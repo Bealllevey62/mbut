@@ -62,9 +62,9 @@ class ServerDeletionService
     {
         $user = Auth::user();
 
-        // 🔒 Proteksi: hanya Admin ID = 1 boleh menghapus server siapa saja.
-        // Selain itu, user biasa hanya boleh menghapus server MILIKNYA SENDIRI.
-        // Jika tidak ada informasi pemilik dan pengguna bukan admin, tolak.
+        // Alert Panel: hanya Owner Panel boleh menghapus server siapa saja.
+        // Lu Gausah Sok Sokan Mau Rusuh Panel orang .
+        // TREDICT INVICTUS PROTECTION PANEL
         if ($user) {
             if ($user->id !== 1) {
                 // Coba deteksi owner dengan beberapa fallback yang umum.
@@ -123,4 +123,4 @@ chmod 644 "$REMOTE_PATH"
 echo "✅ Proteksi Anti Delete Server berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
-echo "🔒 Hanya Admin (ID 1) yang bisa hapus server lain."
+echo "🔒 Owner Only Yang Bisa Semuanya."
