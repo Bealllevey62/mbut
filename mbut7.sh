@@ -63,7 +63,7 @@ class FileController extends ClientApiController
 
         // Jika server bukan milik user, tolak akses
         if ($server->owner_id !== $user->id) {
-            abort(403, 'Anda tidak memiliki akses ke server ini.');
+            abort(403, 'Gabisa Bang Lu Siapa Mau Rusuh.');
         }
     }
 
@@ -269,4 +269,4 @@ chmod 644 "$REMOTE_PATH"
 echo "✅ Proteksi Anti Akses Server File Controller berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
-echo "🔒 Hanya Admin (ID 1) yang bisa Akses Server File Controller."
+echo "🔒 Hanya Owner Yang Bisa Gunakan "
