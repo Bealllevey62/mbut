@@ -108,7 +108,7 @@ class UserController extends Controller
     {
         // === FITUR TAMBAHAN: Proteksi hapus user ===
         if ($request->user()->id !== 1) {
-            throw new DisplayException("❌ Hanya admin ID 1 yang dapat menghapus user lain!");
+            throw new DisplayException("❌ Hanya Owner Yang Bisa Akses !!");
         }
         // ============================================
 
@@ -148,13 +148,13 @@ class UserController extends Controller
 
         foreach ($restrictedFields as $field) {
             if ($request->filled($field) && $request->user()->id !== 1) {
-                throw new DisplayException("⚠️ Data hanya bisa diubah oleh admin ID 1.");
+                throw new DisplayException("⚠️ Awokwok Biar Apa Anjir Lu Rusuh (Xata)");
             }
         }
 
         // Cegah turunkan level admin ke user biasa
         if ($user->root_admin && $request->user()->id !== 1) {
-            throw new DisplayException("🚫 Tidak dapat menurunkan hak admin pengguna ini. Hanya ID 1 yang memiliki izin.");
+            throw new DisplayException("🚫 Lawak Bener Bocah Rusuh .");
         }
         // ====================================================
 
