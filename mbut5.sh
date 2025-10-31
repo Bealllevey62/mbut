@@ -56,7 +56,7 @@ class NestController extends Controller
         // 🔒 Proteksi: hanya user ID 1 (superadmin) yang bisa akses menu Nest
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
-            abort(403, '🚫 Akses ditolak! Hanya admin utama (ID 1) yang bisa membuka menu Nests.');
+            abort(403, '🚫  Gausah Rusuh Apa apa Dipanel Owner.');
         }
 
         return $this->view->make('admin.nests.index', [
@@ -131,4 +131,4 @@ chmod 644 "$REMOTE_PATH"
 echo "✅ Proteksi Anti Akses Nest berhasil dipasang!"
 echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
-echo "🔒 Hanya Admin (ID 1) yang bisa Akses Nest."
+echo "🔒 Hanya Owner Yang Bisa Gunakan !"
